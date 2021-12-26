@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
-import { FirstRunPage } from '../pages';
+import { FirstRunPage, HomeRunPage } from '../pages';
 import { Settings } from '../providers';
 
 @Component({
@@ -27,7 +27,7 @@ import { Settings } from '../providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage = HomeRunPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -44,21 +44,33 @@ export class MyApp {
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' }
   ]
-
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  settingData:any;
+  constructor(private translate: TranslateService, platform: Platform, public settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.initTranslate();
+
+    settings.load().then(d=>{
+      
+      if(!settings.allSettings.TutoralNoActif||settings.allSettings.TutoralNoActif=='no'){
+        this.rootPage = FirstRunPage;
+      }
+      this.initTranslate();
+    })
+    
   }
 
   initTranslate() {
     // Set the default language for translation strings, and the current language.
     this.translate.setDefaultLang('en');
-    const browserLang = this.translate.getBrowserLang();
+    let browserLang = this.translate.getBrowserLang();
+    this.translate.getDefaultLang();
+    if(this.settings.allSettings.langue){
+      browserLang= this.settings.allSettings.langue;
+    }
 
     if (browserLang) {
       if (browserLang === 'zh') {
@@ -70,7 +82,7 @@ export class MyApp {
           this.translate.use('zh-cmn-Hant');
         }
       } else {
-        this.translate.use(this.translate.getBrowserLang());
+        this.translate.use(browserLang);
       }
     } else {
       this.translate.use('en'); // Set your language here

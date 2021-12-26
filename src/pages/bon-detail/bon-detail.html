@@ -1,0 +1,65 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ bon.name }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="bon-detail" padding>
+
+        <h2>{{bon.bon_sort}}</h2>
+        <p>{{bon.date_sort}}</p>
+        <p>{{bon.nom_mag}}</p>
+    </div>
+    <ion-grid>
+        <ion-row class="ion-align-items-start">
+            <ion-col col-2>
+                <div>#</div>
+            </ion-col>
+            <ion-col col-7>
+                <div>Nom</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-3>
+                <div>Quantité</div>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let stk of bon.stocks" class="ion-align-items-start">
+            <ion-col col-2>
+                <div>{{stk.code_art}}</div>
+            </ion-col>
+            <ion-col col-7>
+                {{stk.nom_art}}
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-3>
+                <div>{{stk.qte_sort_art}}</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div class="bon-detail" padding>
+        <p>{{bon.motif}}</p>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+        <ion-title *ngIf="bon.bon_vu==0&&bon.rejeter==0">
+            <button ion-button color="danger" (click)="rejeter(bon)">
+          {{ 'REJECT_BUTTON' | translate }}
+        </button>
+            <button ion-button class="success" shape="round" (click)="accepter(bon)">
+          {{ 'ACCEPT_BUTTON' | translate }}
+        </button>
+
+        </ion-title>
+
+        <ion-title *ngIf="bon.rejeter==1">
+            <button ion-button class="warning" shape="round" (click)="renvoyer(bon)">
+          {{ 'RESEND_BUTTON' | translate }}
+        </button>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

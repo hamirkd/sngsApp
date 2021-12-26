@@ -1,5 +1,7 @@
 {
   "name": "sngsApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

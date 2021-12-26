@@ -16,39 +16,81 @@ export class Items {
   constructor() {
     let items = [
       {
-        "name": "Burt Bear",
+        "name": "MAG10",
         "profilePic": "assets/img/speakers/bear.jpg",
-        "about": "Burt is a Bear."
+        "date_": "11/02/2021",
+        "note":"Reject",
+        "motif":"Nombre d'article incorrect",
+        "stocks":[
+          {
+            id:1,
+            name:'Chambre à aire Charlie is a Cheetah.',
+            quantite:10
+          },
+          {
+            id:2,
+            name:'Pneu',
+            quantite:14
+          },
+          {
+            id:3,
+            name:'Huile à moteur',
+            quantite:21
+          },
+          {
+            id:4,
+            name:'Ordinateur',
+            quantite:5
+          },
+        ]
       },
       {
-        "name": "Charlie Cheetah",
+        "name": "SAM",
         "profilePic": "assets/img/speakers/cheetah.jpg",
-        "about": "Charlie is a Cheetah."
+        "date_": "12/12/2021",
+        "note":"En attente",
+        "stocks":[
+          {
+            id:1,
+            name:'Chambre à aire Charlie is a Cheetah.',
+            quantite:10
+          },
+          {
+            id:2,
+            name:'Pneu',
+            quantite:14
+          },
+          {
+            id:3,
+            name:'Huile à moteur',
+            quantite:21
+          },
+          {
+            id:4,
+            name:'Ordinateur',
+            quantite:5
+          },
+        ]
       },
       {
-        "name": "Donald Duck",
+        "name": "ETYF",
         "profilePic": "assets/img/speakers/duck.jpg",
-        "about": "Donald is a Duck."
+        "date_": "14/12/2021",
+        "note":"Reject",
+        "motif":"Nombre d'article incorrect"
       },
       {
-        "name": "Eva Eagle",
+        "name": "MAG10",
         "profilePic": "assets/img/speakers/eagle.jpg",
-        "about": "Eva is an Eagle."
+        "date_": "Eva is an Eagle.",
+        "note":"En attente"
       },
       {
-        "name": "Ellie Elephant",
+        "name": "MAG11",
         "profilePic": "assets/img/speakers/elephant.jpg",
-        "about": "Ellie is an Elephant."
-      },
-      {
-        "name": "Molly Mouse",
-        "profilePic": "assets/img/speakers/mouse.jpg",
-        "about": "Molly is a Mouse."
-      },
-      {
-        "name": "Paul Puppy",
-        "profilePic": "assets/img/speakers/puppy.jpg",
-        "about": "Paul is a Puppy."
+        "date_": "31/05/2021",
+        "note":"Reject",
+        "motif":"Nombre d'article incorrect"
       }
     ];
 
