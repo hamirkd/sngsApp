@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
 import { Storage } from '@ionic/storage';
-import { NavController } from 'ionic-angular';
 
 /**
  * Most apps have the concept of a User. This is a simple provider

@@ -1,22 +1,53 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
-  <ion-list>
-    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-      <ion-avatar item-start>
-        <img [src]="item.profilePic" />
-      </ion-avatar>
-      <h2>{{item.name}}</h2>
-      <p>{{item.about}}</p>
-      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-    </button>
-  </ion-list>
+    <ion-searchbar (ionInput)="getBons($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+    <ion-list>
+        <button ion-item (click)="openBon(bon)" *ngFor="let bon of currentBons">
+          <button ion-item (click)="openItem(bon)">
+            <ion-avatar item-start>
+              <img [src]="'assets/img-gbcys/logo.jpg'" />
+            </ion-avatar>
+            <h2>{{bon.bon_sort}}</h2>
+            <p>{{bon.date_sort}}</p>
+            <p>
+              {{bon.nom_mag}}
+              <ion-icon name="arrow-back" *ngIf="bon.rejeter==1"></ion-icon>
+              <ion-icon
+                name="arrow-forward"
+                *ngIf="bon.bon_vu==0&&bon.rejeter==0"
+              ></ion-icon>
+              {{bon.nom_mag_sort_dst}}
+            </p>
+            <ion-note item-end *ngIf="bon.rejeter==1" color="danger"
+              >{{ 'REJECT' | translate }}</ion-note
+            >
+            <ion-note item-end *ngIf="bon.bon_vu==0&&bon.rejeter==0"
+              >{{ 'ENATTENTE' | translate }}</ion-note
+            >
+          </button>
+
+        <ion-item-options *ngIf="bon.bon_vu==0">
+            <button ion-button color="danger" (click)="deleteItem(bon)">
+              {{ 'REJECT_BUTTON' | translate }}
+            </button>
+            <button ion-button class="success" shape="round" (click)="deleteItem(bon)">
+              {{ 'ACCEPT_BUTTON' | translate }}
+            </button>
+        </ion-item-options>
+
+        <ion-item-options *ngIf="bon.rejeter==1">
+            <button ion-button class="warning" shape="round" (click)="deleteItem(bon)">
+              {{ 'RESEND_BUTTON' | translate }}
+            </button>
+        </ion-item-options>
+        </button>
+    </ion-list>
 </ion-content>

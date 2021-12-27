@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Bon } from '../../models/bon';
 
-import { Item } from '../../models/item';
-import { Items } from '../../providers';
+import { BonProvider } from '../../providers/bon/bon';
 
 @IonicPage()
 @Component({
@@ -11,30 +11,37 @@ import { Items } from '../../providers';
 })
 export class SearchPage {
 
-  currentItems: any = [];
+  currentBons: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public bons: BonProvider) { }
 
   /**
-   * Perform a service for the proper items.
+   * Perform a service for the proper bons.
    */
-  getItems(ev) {
+  
+   ionViewDidLoad() {
+    this.bons.updateStatic();
+  }
+  getBons(ev) {
     let val = ev.target.value;
     if (!val || !val.trim()) {
-      this.currentItems = [];
+      this.currentBons = [];
       return;
     }
-    this.currentItems = this.items.query({
-      name: val
+    this.currentBons = this.bons.query({
+      nom_mag: val,
+      bon_sort: val,
+      date_sort:val,
+      nom_mag_sort_dst:val
     });
   }
 
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
-    this.navCtrl.push('ItemDetailPage', {
-      item: item
+  openBon(bon: Bon) {
+    this.navCtrl.push('BonDetailPage', {
+      bon: bon
     });
   }
 

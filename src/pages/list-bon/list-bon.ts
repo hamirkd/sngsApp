@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
 import { isArray } from 'ionic-angular/util/util';
 import { Bon } from '../../models/bon';
 
-import { Item } from '../../models/item';
 import { Items } from '../../providers';
 import { BonProvider } from '../../providers/bon/bon';
 
@@ -14,10 +12,9 @@ import { BonProvider } from '../../providers/bon/bon';
   templateUrl: 'list-bon.html'
 })
 export class ListBonPage {
-  currentItems: Item[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController,private bonService:BonProvider,public translateService:TranslateService) {
-    this.currentItems = this.items.query();
+  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController,private bonService:BonProvider) {
+    this.getBonList();
   }
   
   listBons : Bon[]=[];
@@ -36,7 +33,7 @@ export class ListBonPage {
     this.bonService.getBonRejeter().subscribe(data=>{
       let bons = JSON.parse(JSON.stringify(data)).datas;
       if(isArray(bons)){this.listBons.push(...bons)
-      this.listBons.sort((a,b)=>a.date_sort.localeCompare(b.date_sort))}
+      this.listBons.sort((a,b)=>{if(a.date_sort.localeCompare(b.date_sort))return 0})}
     },err=>{
       console.log(err)
       this.listBons=[];
@@ -47,7 +44,7 @@ export class ListBonPage {
       let bons = JSON.parse(JSON.stringify(data)).datas;
       if(isArray(bons)){
       this.listBons.push(...bons);
-      this.listBons.sort((a,b)=>a.date_sort.localeCompare(b.date_sort))}
+      this.listBons.sort((a,b)=>{if(a.date_sort.localeCompare(b.date_sort))return 0})}
     },err=>{
       console.log(err)
       this.listBons=[];
@@ -59,18 +56,10 @@ export class ListBonPage {
     this.getBonListRejeter();
   }
 
-
-  /**
-   * Delete an item from the list of items.
-   */
-  deleteItem(item) {
-    this.items.delete(item);
-  }
-
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(bon: Item) {
+  openItem(bon: Bon) {
     this.navCtrl.push('BonDetailPage', {
       bon: bon
     });
@@ -83,6 +72,5 @@ export class ListBonPage {
           event.complete();
     }, 3000);
   }
-
   
 }

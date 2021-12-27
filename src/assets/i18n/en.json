@@ -64,11 +64,15 @@
     "CARDS_TITLE": "Social",
 
     "SEARCH_TITLE": "Search",
-    "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
+    "SEARCH_PLACEHOLDER": "Search Order",
     "SETTINGS_LANGUAGE": "Language",
     "LOGOUT_BUTTON": "Logout",
     "BONS_TITLE": "List of order",
     "BIENVENUE_PARMIS_NOUS": "Welcome to us",
     "ANGLAIS": "ENGLISH",
-    "FRANCAIS": "FRENCH"
+    "FRANCAIS": "FRANCAIS",
+    "ENATTENTE": "Watting",
+    "REJECT": "Reject",
+    "Pull to refresh": "Pull to refresh",
+    "Refreshing": "Refreshing"
 }

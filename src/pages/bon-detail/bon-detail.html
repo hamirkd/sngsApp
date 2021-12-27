@@ -12,7 +12,12 @@
 
         <h2>{{bon.bon_sort}}</h2>
         <p>{{bon.date_sort}}</p>
-        <p>{{bon.nom_mag}}</p>
+
+        <p>{{bon.nom_mag}}
+            <ion-icon name="arrow-back" *ngIf="bon.rejeter==1"></ion-icon>
+            <ion-icon name="arrow-forward" *ngIf="bon.bon_vu==0&&bon.rejeter==0"></ion-icon>
+            {{bon.nom_mag_sort_dst}}
+        </p>
     </div>
     <ion-grid>
         <ion-row class="ion-align-items-start">
