@@ -36,7 +36,8 @@
                 </ion-item>
 
                 <div padding>
-                    <button ion-button color="primary" block class="login">{{ 'LOGIN_BUTTON' | translate }}</button>
+                    <button ion-button color="primary" block class="login" *ngIf="!isSubmit">{{ 'LOGIN_BUTTON' | translate }}</button>
+                    <button ion-button color="primary" block class="login" *ngIf="isSubmit" disabled><ion-spinner></ion-spinner></button>
                 </div>
 
             </ion-list>

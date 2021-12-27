@@ -21,8 +21,9 @@ export class LoginPage {
   };
 
   // Our translated text strings
-  private loginErrorString: string;
+  // private loginErrorString: string;
   private successLog:string;
+  isSubmit = false;
 
   constructor(public navCtrl: NavController, public storage: Storage,
     public user: User,
@@ -42,7 +43,9 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
+    this.isSubmit = true;
     this.user.login(this.account).subscribe((resp) => {
+      this.isSubmit=false;
       this.navCtrl.push(MainPage);
       let toast = this.toastCtrl.create({
         message: this.successLog,
@@ -51,16 +54,29 @@ export class LoginPage {
       });
       toast.present();
       this.storage.set("user_connexion_data",JSON.stringify(this.account));
+
     }, (err) => {
-      
-      console.log(err.status)
+      this.isSubmit=false;
+      console.log(err)
       // Unable to log in
-      let toast = this.toastCtrl.create({
+      if(err.error.message)
+      {
+        let toast = this.toastCtrl.create({
         message: err.error.message,
         duration: 3000,
         position: 'top'
       });
       toast.present();
+    }
+    else{
+      let toast = this.toastCtrl.create({
+      message: err.message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
     });
   }
 }
