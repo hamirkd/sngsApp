@@ -44,7 +44,8 @@ export class ListBonPage {
       let bons = JSON.parse(JSON.stringify(data)).datas;
       if(isArray(bons)){
       this.listBons.push(...bons);
-      this.listBons.sort((a,b)=>{if(a.date_sort.localeCompare(b.date_sort))return 0})}
+      this.listBons=this.listBons.sort((a,b)=>{if(a.date_sort.localeCompare(b.date_sort))return 0})}
+      console.log(this.listBons);
     },err=>{
       console.log(err)
       this.listBons=[];

@@ -20,12 +20,14 @@
         <p>
           {{bon.nom_mag}}
           <ion-icon name="arrow-back" *ngIf="bon.rejeter==1"></ion-icon>
+        </p><p>
           <ion-icon
             name="arrow-forward"
             *ngIf="bon.bon_vu==0&&bon.rejeter==0"
           ></ion-icon>
           {{bon.nom_mag_sort_dst}}
         </p>
+        <p>({{bon.login_sort}})</p>
         <ion-note item-end *ngIf="bon.rejeter==1" color="danger"
           >{{ 'REJECT' | translate }}</ion-note
         >
