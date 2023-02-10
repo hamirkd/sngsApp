@@ -1,0 +1,63 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ facture.name }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="facture-detail" padding>
+
+        <h2>{{facture.date_fact}}</h2>
+        <p>{{facture.magasin}}
+        </p>
+        <p>Auteur : {{facture.login_caissier_fact}}</p>
+    </div>
+    <ion-grid>
+        <ion-row class="ion-align-items-start">
+            <ion-col col-2>
+                <div>#</div>
+            </ion-col>
+            <ion-col col-6>
+                <div>Nom</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-1>
+                <div>Qté</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-3>
+                <div>Montant</div>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let stk of liste_item" class="ion-align-items-start">
+            <ion-col col-2>
+                <div>{{stk.article_vnt}}</div>
+            </ion-col>
+            <ion-col col-6>
+                {{stk.article}}
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-1>
+                <div>{{stk.Qte_vnt}}</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-3>
+                <div>{{stk.mnt_theo_vnt}}</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div class="facture-detail" padding *ngIf="facture.sup_fact==1" style="color:red">
+        <h5>Annulation ({{facture.sup_by_fact}})</h5>
+        <p>Motif : {{facture.motif_sup_fact}}</p>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+        <ion-title *ngIf="facture.sup_fact==0">
+            <button ion-button color="danger" (click)="annuler(facture)">
+                {{ 'ANNULER_BUTTON' | translate }}
+            </button>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

@@ -45,8 +45,8 @@ export class User {
 
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      
-        this._loggedIn(res.datas);
+       
+        if(res['status']!=1) this._loggedIn(res.datas);
       
     }, err => {
       console.error('ERROR', err);

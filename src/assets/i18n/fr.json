@@ -8,6 +8,7 @@
     "TAB1_TITLE": "Bon",
     "TAB2_TITLE": "Recherche",
     "TAB3_TITLE": "Paramètres",
+    "TAB4_TITLE": "Facture",
 
     "MAP_TITLE": "Carte",
 
@@ -43,17 +44,21 @@
     "ARTICLES_TITLE": "Articles",
 
     "ITEM_CREATE_TITLE": "Nouvel item",
+    "MOTIF_TITLE": "Motif",
     "ITEM_CREATE_CHOOSE_IMAGE": "Ajouter une image",
 
     "CARDS_TITLE": "Social",
 
     "SEARCH_TITLE": "Recherche",
     "BONS_TITLE": "Liste des bons",
+    "FACTURES_TITLE": "Liste des factures",
     "ACCEPT_BUTTON": "Accepter",
     "REJECT_BUTTON": "Rejeter",
+    "ANNULER_BUTTON": "Annuler",
     "RESEND_BUTTON": "Renvoyer",
     "SAVE_BUTTON": "Enregister",
     "LEAVE_BUTTON": "Annuler",
+    "CONFIRMER_BUTTON": "Confirmer",
     "MOTIF_PLACEHOLDER": "Decrire le motif",
     "SETTINGS_LANGUAGE": "Langue",
     "BIENVENUE_PARMIS_NOUS": "Bienvenue parmis nous",
@@ -61,8 +66,11 @@
     "FRANCAIS": "FRANCAIS",
     "ENATTENTE": "En attente",
     "REJECT": "Rejeté",
+    "ANNULE": "Annulée",
+    "ANNULE_PAR": "Annulée par",
     "USERNAME": "Nom utilisateur",
     "Pull to refresh": "Tirer pour rafraîchir",
     "Refreshing": "En cours",
-    "SEARCH_PLACEHOLDER": "Search bon"
+    "SEARCH_PLACEHOLDER": "Search bon",
+    "SEARCH_PLACEHOLDER_FACTURE": "Search facture"
 }

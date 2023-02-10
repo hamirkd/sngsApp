@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'FACTURES_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="100" pullMax="200" closeDuration="0.3">
+        <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar (ionInput)="getFactures($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_FACTURE' | translate }}"></ion-searchbar>
+    <ion-list>
+        <ion-item-sliding *ngFor="let facture of listfactures">
+            <button ion-item (click)="openItem(facture)">
+        <ion-avatar item-start>
+          <img [src]="'assets/img-gbcys/logo.jpg'" />
+        </ion-avatar>
+        <h2>{{facture.code_fact}}</h2>
+        <p>{{facture.date_fact}}</p>
+        <p>{{facture.magasin}}</p>
+        <p *ngIf="facture.clt">Client : {{facture.clt}}</p>
+        <p>({{facture.login_caissier_fact}})</p>
+        <p style="color:red" *ngIf="facture.sup_fact==1">{{'ANNULE_PAR' | translate }} {{facture.sup_by_fact}}</p>
+        <ion-note item-end *ngIf="facture.sup_fact==1" color="danger"
+          >{{ 'ANNULE' | translate }}</ion-note
+        >
+      </button>
+            <ion-item-options *ngIf="facture.sup_fact==0">
+                <button ion-button color="danger" (click)="annuleItem(facture)">
+                  {{ 'ANNULER_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

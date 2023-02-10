@@ -11,6 +11,7 @@
     "TAB1_TITLE": "Items",
     "TAB2_TITLE": "Search",
     "TAB3_TITLE": "Settings",
+    "TAB4_TITLE": "Invoice",
 
     "MAP_TITLE": "Map",
 
@@ -60,6 +61,7 @@
     "DONE_BUTTON": "Done",
     "CANCEL_BUTTON": "Cancel",
     "DELETE_BUTTON": "Delete",
+    "MOTIF_TITLE": "Raison",
 
     "CARDS_TITLE": "Social",
 
@@ -68,11 +70,14 @@
     "SETTINGS_LANGUAGE": "Language",
     "LOGOUT_BUTTON": "Logout",
     "BONS_TITLE": "List of order",
+    "FACTURES_TITLE": "List of invoices",
     "BIENVENUE_PARMIS_NOUS": "Welcome to us",
     "ANGLAIS": "ENGLISH",
     "FRANCAIS": "FRANCAIS",
     "ENATTENTE": "Watting",
+    "ANNULE_PAR": "Cancel by",
     "REJECT": "Reject",
+    "ANNULE": "Cancel",
     "Pull to refresh": "Pull to refresh",
     "Refreshing": "Refreshing"
 }
