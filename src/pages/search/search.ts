@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { isArray } from 'ionic-angular/util/util';
 import { Bon } from '../../models/bon';
 
 import { BonProvider } from '../../providers/bon/bon';
@@ -28,12 +29,18 @@ export class SearchPage {
       this.currentBons = [];
       return;
     }
-    this.currentBons = this.bons.query({
-      nom_mag: val,
-      bon_sort: val,
-      date_sort:val,
-      nom_mag_sort_dst:val
-    });
+
+    this.bons.searchBon(val).subscribe(data=>{
+      console.log(data)
+      let bons = JSON.parse(JSON.stringify(data)).datas;
+      if(isArray(bons)){this.currentBons=bons}
+      this.currentBons.sort((a,b)=>{
+        if(a.date_sort.localeCompare(b.date_sort))
+        return 0
+      })
+    })
+    
+
   }
 
   /**

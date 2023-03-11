@@ -16,9 +16,28 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: { login: string, password: string } = {
-    login: 'root',
-    password: 'adminroot1'
+    login: '',
+    password: ''
   };
+
+  
+  ionViewDidLoad() {
+    
+    this.translateService.get('BIENVENUE_PARMIS_NOUS').subscribe((value) => {
+      this.successLog = value;
+    });
+    this.storage.get("user_connexion_data").then(data=>{
+      if(JSON.parse(data))
+      {this.account = JSON.parse(data);
+      this.doLogin();
+    }
+    })
+
+  }
+  // account: { login: string, password: string } = {
+  //   login: 'root',
+  //   password: 'adminroot1'
+  // };
 
   // Our translated text strings
   // private loginErrorString: string;

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import { Api } from "..";
-import { Facture } from "../../models/facture";
+import { Client } from "../../models/client";
 
 /*
   Generated class for the BonProvider provider.
@@ -10,12 +10,12 @@ import { Facture } from "../../models/facture";
   and Angular DI.
 */
 @Injectable()
-export class FactureProvider {
+export class ClientProvider {
   constructor(public api: Api, public storage: Storage) {}
-  factures:Facture[]=[];
-  getFactureByFilter(facture) {
+  clients:Client[]=[];
+  getCreancesgClients(client) {
     let seq = this.api
-      .post("app/core/apimobile/vente.class.php?x=getVentes", facture)
+      .post("app/core/apimobile/reglement.class.php?x=getCreancesgClients", client)
       .share();
     seq.subscribe(
       (res: any) => {
@@ -30,10 +30,10 @@ export class FactureProvider {
     return seq;
   }
 
-  getfactureDetail(facture){
+  getclientDetail(client_id){
     
     let seq = this.api
-    .post("app/core/apimobile/vente.class.php?x=getfactureDetail", facture)
+    .get("app/core/apimobile/reglement.class.php?x=getCreancegDetails&&id_clt="+client_id)
     .share();
 
     seq.subscribe(
@@ -48,32 +48,14 @@ export class FactureProvider {
 
   return seq;
   }
-
-  factureAnnulation(facture:{motif,id_fact}){
-    
-    let seq = this.api
-    .post("app/core/apimobile/annulation.class.php?x=undoFacture", facture)
-    .share();
-
-    seq.subscribe(
-      (res: any) => {
-        // If the API returned a successful response, mark the user as logged in
-        console.log(res);
-      },
-      (err) => {
-        console.error("ERROR", err);
-      }
-    );
-
-  return seq;
-  }
+ 
   
 
   
 
-  searchFacture(facturefilter) {
+  searchClient(clientfilter) {
     let seq = this.api
-      .post("app/core/apimobile/vente.class.php?x=searchFacture", facturefilter)
+      .post("app/core/apimobile/vente.class.php?x=searchClient", clientfilter)
       .share();
 
     seq.subscribe(
@@ -97,10 +79,10 @@ export class FactureProvider {
 
   query(params?: any) {
     if (!params) {
-      return this.factures;
+      return this.clients;
     }
  
-    return this.factures.filter((item) => {
+    return this.clients.filter((item) => {
       for (let key in params) {
         let field = item[key];
         if (

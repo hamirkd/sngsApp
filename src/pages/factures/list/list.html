@@ -9,14 +9,14 @@
         <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar (ionInput)="getFactures($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_FACTURE' | translate }}"></ion-searchbar>
+    <ion-searchbar (ionInput)="searchFacture($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_FACTURE' | translate }}"></ion-searchbar>
     <ion-list>
         <ion-item-sliding *ngFor="let facture of listfactures">
             <button ion-item (click)="openItem(facture)">
         <ion-avatar item-start>
           <img [src]="'assets/img-gbcys/logo.jpg'" />
         </ion-avatar>
-        <h2>{{facture.code_fact}}</h2>
+        <h2><b>{{facture.code_fact}}</b></h2>
         <p>{{facture.date_fact}}</p>
         <p>{{facture.magasin}}</p>
         <p *ngIf="facture.clt">Client : {{facture.clt}}</p>
@@ -33,4 +33,8 @@
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="closed">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

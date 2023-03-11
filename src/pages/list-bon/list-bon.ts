@@ -73,5 +73,25 @@ export class ListBonPage {
           event.complete();
     }, 3000);
   }
+
+  
+  searchBon(ev) {
+    let val = ev.target.value;
+    if (!val || !val.trim()) {
+      this.listBons = [];
+      return;
+    }
+
+    this.bonService.searchBon(val).subscribe(data=>{
+      console.log(data)
+      let bons = JSON.parse(JSON.stringify(data)).datas;
+      if(isArray(bons)){this.listBons=bons}
+      this.listBons.sort((a,b)=>{
+        if(a.date_sort.localeCompare(b.date_sort))
+        return 0
+      })
+    })
+    
+  }
   
 }

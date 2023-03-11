@@ -47,6 +47,7 @@ export class BonProvider {
 
     return seq;
   }
+
   updateStatic(){
     this.getBonAll().subscribe(data=>{
       let bons = JSON.parse(JSON.stringify(data)).datas;
@@ -73,6 +74,7 @@ export class BonProvider {
 
     return seq;
   }
+
   getBonDetail(bon) {
     let seq = this.api
       .post("app/core/sortie.class.php?x=showSortDetails", bon)
@@ -90,6 +92,26 @@ export class BonProvider {
 
     return seq;
   }
+
+  searchBon(numerobon) {
+    console.log(numerobon)
+    let seq = this.api
+      .post("app/core/sortie.class.php?x=searchBon", {numerobon:numerobon})
+      .share();
+
+    seq.subscribe(
+      (res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        console.log(res);
+      },
+      (err) => {
+        console.error("ERROR", err);
+      }
+    );
+
+    return seq;
+  }
+  
 
   query(params?: any) {
     if (!params) {

@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'CLIENTS_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="100" pullMax="200" closeDuration="0.3">
+        <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar (ionInput)="searchClient($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_CLIENT' | translate }}"></ion-searchbar>
+    <ion-list>
+        <ion-item-sliding *ngFor="let client of listclients">
+            <button ion-item (click)="openItem(client)">
+        <ion-avatar item-start>
+          <img [src]="'assets/img-gbcys/logo.jpg'" />
+        </ion-avatar>
+        <h2><b>{{client.code_clt}}</b></h2>
+        <p>{{client.nom_clt}}</p>
+        <ion-note item-end color="danger" *ngIf="client.mnt_reste>0"
+          >{{client.mnt_reste}} </ion-note
+        >
+      </button>
+            <ion-item-options>
+                <button ion-button>
+                  {{ 'LIST_REGLEMENT' | translate }}
+                </button>
+                <button ion-button color="danger">
+                  {{ 'LIST_FACTURE_NON_REGLEE' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="closed">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

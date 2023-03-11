@@ -1,0 +1,61 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ client.code_clt }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="facture-detail" padding>
+
+        <h2>{{client.nom_clt}}</h2>
+
+        <p>Restant : {{client.mnt_reste}}</p>
+    </div>
+    <ion-grid>
+        <ion-row class="ion-align-items-start">
+            <ion-col col-2>
+                <div>Date</div>
+            </ion-col>
+            <ion-col col-2>
+                <div>Facture</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>Vendeur</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>Designation</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>Quantite</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>Montant</div>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let stk of liste_item" class="ion-align-items-start">
+            <ion-col col-2>
+                <div>{{stk.date_fact}}</div>
+            </ion-col>
+            <ion-col col-2>
+                {{stk.code_fact}}
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>{{stk.code_caissier_fact}}</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>{{stk.nom_art}}</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>{{stk.qte_vnt}}</div>
+            </ion-col>
+            <ion-col class="ion-align-items-end" col-2>
+                <div>{{stk.mnt_theo_vnt}}</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+</ion-footer>

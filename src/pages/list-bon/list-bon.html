@@ -9,6 +9,7 @@
         <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
         </ion-refresher-content>
     </ion-refresher>
+    <ion-searchbar (ionInput)="searchBon($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_BON' | translate }}"></ion-searchbar>
     <ion-list>
         <ion-item-sliding *ngFor="let bon of listBons">
             <button ion-item (click)="openItem(bon)">

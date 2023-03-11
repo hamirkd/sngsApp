@@ -6,9 +6,9 @@
     "SIGNUP": "Inscription",
 
     "TAB1_TITLE": "Bon",
-    "TAB2_TITLE": "Recherche",
+    "TAB2_TITLE": "Clients",
     "TAB3_TITLE": "Paramètres",
-    "TAB4_TITLE": "Facture",
+    "TAB4_TITLE": "Factures",
 
     "MAP_TITLE": "Carte",
 
@@ -71,6 +71,8 @@
     "USERNAME": "Nom utilisateur",
     "Pull to refresh": "Tirer pour rafraîchir",
     "Refreshing": "En cours",
-    "SEARCH_PLACEHOLDER": "Search bon",
-    "SEARCH_PLACEHOLDER_FACTURE": "Search facture"
+    "SEARCH_PLACEHOLDER_BON": "rechercher un bon",
+    "SEARCH_PLACEHOLDER_FACTURE": "rechercher une facture",
+    "CLIENTS_TITLE": "Clients",
+    "SEARCH_PLACEHOLDER_CLIENT": "Rechercher un client"
 }

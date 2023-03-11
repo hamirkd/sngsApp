@@ -79,5 +79,7 @@
     "REJECT": "Reject",
     "ANNULE": "Cancel",
     "Pull to refresh": "Pull to refresh",
-    "Refreshing": "Refreshing"
+    "Refreshing": "Refreshing",
+    "SEARCH_PLACEHOLDER_BON": "Search order",
+    "SEARCH_PLACEHOLDER_FACTURE": "Search invoice"
 }
