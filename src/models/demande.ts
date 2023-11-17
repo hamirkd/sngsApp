@@ -1,5 +1,5 @@
 export class Demande {
-    id_dem: string;
+    id_dem: number;
     next_role: string;
     last_user: string;
     action: string;

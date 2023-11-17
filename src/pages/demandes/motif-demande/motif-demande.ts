@@ -6,8 +6,8 @@ import {  User as UserService } from '../../../providers';
 
 @IonicPage()
 @Component({
-  selector: 'page-motif',
-  templateUrl: 'motif.html'
+  selector: 'page-motif-demande',
+  templateUrl: 'motif-demande.html'
 })
 export class DemandeMotifPage {
 
@@ -54,6 +54,13 @@ export class DemandeMotifPage {
       action:2
     }).subscribe(data=>{
       this.viewCtrl.dismiss(this.demande);
+      let toast = this.toastCtrl.create({
+      message: data["message"],
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+    this.demande.action = 3;
     })
     
   }

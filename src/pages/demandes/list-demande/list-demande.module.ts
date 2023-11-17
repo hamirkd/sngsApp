@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
-import { FactureProvider } from '../../../providers/factures/facture.provider';
-import { ListFacturePage } from './list';
+import { DemandeProvider } from '../../../providers/demandes/demande.provider';
+import { ListDemandePage } from './list-demande';
 
 
 @NgModule({
   declarations: [
-    ListFacturePage,
+    ListDemandePage,
   ],
   imports: [
-    IonicPageModule.forChild(ListFacturePage),
+    IonicPageModule.forChild(ListDemandePage),
     TranslateModule.forChild()
   ],
   exports: [
-    ListFacturePage
+    ListDemandePage
   ],
   providers: [
     
-    FactureProvider
+    DemandeProvider
   ]
 })
 export class ListPageModule { }

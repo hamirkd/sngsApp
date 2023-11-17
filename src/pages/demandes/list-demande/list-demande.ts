@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, ToastController } from 'ionic-angular';
 import { isArray } from 'ionic-angular/util/util';
 import { Demande } from '../../../models/demande';
 
@@ -10,13 +10,14 @@ import {  User as UserService } from '../../../providers';
 @IonicPage()
 @Component({
   selector: 'page-list-demande',
-  templateUrl: 'list.html'
+  templateUrl: 'list-demande.html'
 })
 export class ListDemandePage {
 
   constructor(public navCtrl: NavController,private userService: UserService, public items: Items,
+    public toastCtrl: ToastController,
     public modalCtrl: ModalController,private demandeProvider:DemandeProvider) {
-    this.getAllDemande();
+    this.getAllDemandeValidation();
   }
 
   
@@ -26,7 +27,7 @@ export class ListDemandePage {
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
-    this.getAllDemande();
+    this.getAllDemandeValidation();
   }
 
   /**
@@ -41,6 +42,20 @@ export class ListDemandePage {
       if(isArray(demandes)){
         this.listdemandes.push(...demandes)}
       }
+    },err=>{
+      console.log(err)
+      this.listdemandes=[];
+    })
+  }  
+  getAllDemandeValidation(){
+    this.demandeProvider.getDemandesByRole(this.userService._user.droit_validateur_demande).subscribe(data=>{
+      if(data)
+      {
+        let demandes = JSON.parse(JSON.stringify(data)).datas;
+        this.listdemandes=[];
+      //if(isArray(demandes)){
+        this.listdemandes.push(...demandes)}
+     // }
     },err=>{
       console.log(err)
       this.listdemandes=[];
@@ -66,16 +81,22 @@ export class ListDemandePage {
     this.demandeProvider.demandeRejeterOrAccepter(
       {
       motif:'',
-      id_dem:demande.id_dem,
+      id_dem:Number(demande.id_dem),
       role: this.userService._user.droit_validateur_demande,
       action:1
     }).subscribe(data=>{
-      this.navCtrl.canGoBack();
+      let toast = this.toastCtrl.create({
+      message: data["message"],
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+    this.getAllDemandeValidation();
     })
   }
   
   refresh(event) {
-    this.getAllDemande();
+    this.getAllDemandeValidation();
     setTimeout(() => {
       if (event)
           event.complete();

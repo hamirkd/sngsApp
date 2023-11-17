@@ -17,10 +17,12 @@
           <img [src]="'assets/img-gbcys/logo.jpg'" />
         </ion-avatar>
         <h2><b>{{demande.id_dem}}</b></h2>
-        <p>{{demande.date_demande}}</p>
-        <p>{{demande.mag_demandeur}}</p>
+        <p>Date {{demande.date_demande | date}}</p>
+        <p>Magasin : ({{demande.mag_demandeur}}) {{demande.magasin}}</p>
         <p>Demandeur : {{demande.login_demandeur}}</p>
-        <p>({{demande.login_caissier_fact}})</p>
+        <p *ngIf="demande.last_user">Dernier Validateur : {{demande.last_user}}</p>
+        <p>Type demande : {{demande.type_demande}}</p>
+        <p>Description : {{demande.details}}</p>
         <p style="color:red" *ngIf="demande.action==2">{{'REJETER_PAR' | translate }} {{demande.last_user}}</p>
         <ion-note item-end *ngIf="demande.sup_fact==2" color="danger"
           >{{ 'REJETER' | translate }}</ion-note
@@ -28,7 +30,7 @@
       </button>
             <ion-item-options *ngIf="demande.sup_fact!==2">
                 <button ion-button color="success" (click)="accepterItem(demande)">
-                  {{ 'ACCEPTER_BUTTON' | translate }}
+                  {{ 'ACCEPT_BUTTON' | translate }}
                 </button>
                 <button ion-button color="danger" (click)="rejeterItem(demande)">
                   {{ 'ANNULER_BUTTON' | translate }}

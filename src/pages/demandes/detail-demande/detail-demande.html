@@ -10,10 +10,15 @@
 <ion-content>
     <div class="demande-detail" padding>
 
-        <h2>{{demande.date_demande}}</h2>
-        <p>{{demande.mag_demandeur}}
-        </p>
+        <h2>{{demande.date_demande | date}}</h2>
+        <p>Magasin : ({{demande.mag_demandeur}}) {{demande.magasin}}</p>
+
         <p>Auteur : {{demande.login_demandeur}}</p>
+    </div>
+    <div class="demande-detail" padding>
+        <p>Type demande : {{demande.type_demande}}</p>
+        <h5>Description</h5>
+        <p>{{demande.details}}</p>
     </div>
     <div class="demande-detail" padding *ngIf="demande.action==2" style="color:red">
         <h5>Rejeter ({{demande.last_user}})</h5>
@@ -28,8 +33,8 @@
             <button ion-button color="danger" (click)="annuler()">
                 {{ 'ANNULER_BUTTON' | translate }}
             </button>
-            <button ion-button color="danger" (click)="accepter()">
-                {{ 'ACCEPTER_BUTTON' | translate }}
+            <button ion-button color="success" (click)="accepter()">
+                {{ 'ACCEPT_BUTTON' | translate }}
             </button>
         </ion-title>
     </ion-toolbar>

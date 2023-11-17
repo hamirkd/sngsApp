@@ -15,7 +15,7 @@ export class DemandeProvider {
   demandes:Demande[]=[];
   getDemandeByFilter(demande) {
     let seq = this.api
-      .post("app/core/apimobile/demande.class.php?x=getEtatDemandes", demande)
+      .post("app/core/demande.class.php?x=getEtatDemandes", demande)
       .share();
     seq.subscribe(
       (res: any) => {
@@ -33,7 +33,7 @@ export class DemandeProvider {
   getDemandesByRole(role){
     
     let seq = this.api
-    .post("app/core/apimobile/demande.class.php?x=getDemandesByRole",{role: role})
+    .post("app/core/demande.class.php?x=getDemandesByRole",{role: role})
     .share();
 
     seq.subscribe(
@@ -57,7 +57,7 @@ export class DemandeProvider {
   demandeRejeterOrAccepter(demande:{motif,id_dem, action, role}){
     
     let seq = this.api
-    .post("app/core/apimobile/demande.class.php?x=actionSurDemande", demande)
+    .post("app/core/demande.class.php?x=actionSurDemande", demande)
     .share();
 
     seq.subscribe(

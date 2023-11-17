@@ -3,21 +3,19 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DemandeProvider } from '../../../providers/demandes/demande.provider';
 
-import { DemandeMotifPage } from './motif';
+import { DetailDemandePage } from './detail-demande';
 
 @NgModule({
   declarations: [
-    DemandeMotifPage,
+    DetailDemandePage,
   ],
   imports: [
-    IonicPageModule.forChild(DemandeMotifPage),
+    IonicPageModule.forChild(DetailDemandePage),
     TranslateModule.forChild()
   ],
   exports: [
-    DemandeMotifPage
+    DetailDemandePage
   ],
-  providers:[
-    DemandeProvider
-  ]
+  providers:[DemandeProvider]
 })
-export class DemandeMotifPageModule { }
+export class DetailDemandePageModule { }

@@ -54,9 +54,13 @@ export class LoginPage {
     });
     storage.get("user_connexion_data").then(data=>{
       if(JSON.parse(data))
-      {this.account = JSON.parse(data);
-      this.doLogin();
-    }
+      {
+        this.account = JSON.parse(data);
+        this.doLogin();
+      }
+      else {
+        storage.remove('user_connexion_data')
+      }
     })
   }
 
