@@ -1,7 +1,7 @@
 {
-  "name": "sngsApp",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
+    "name": "LinaTest",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "ionic-angular"
 }

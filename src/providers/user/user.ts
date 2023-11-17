@@ -85,6 +85,7 @@ export class User {
     this._user = null;
     this.storage.remove("user_connexion_data");
     this.storage.remove("user");
+    this.storage.remove("permission");
   }
 
   /**

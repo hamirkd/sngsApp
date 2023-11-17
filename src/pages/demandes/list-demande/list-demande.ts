@@ -53,9 +53,9 @@ export class ListDemandePage {
       {
         let demandes = JSON.parse(JSON.stringify(data)).datas;
         this.listdemandes=[];
-      //if(isArray(demandes)){
+      if(isArray(demandes)){
         this.listdemandes.push(...demandes)}
-     // }
+      }
     },err=>{
       console.log(err)
       this.listdemandes=[];
