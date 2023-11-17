@@ -92,6 +92,62 @@ export class BonProvider {
 
     return seq;
   }
+  
+  rejetersrt(bon) {
+    let seq = this.api
+      .post("app/core/sortie.class.php?x=rejetersrt", 
+      { 
+        id_sort:bon.id_sort,
+        motif: bon.motif
+      } ).share();
+
+    seq.subscribe(
+      (res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        console.log(res);
+      },
+      (err) => {
+        console.error("ERROR", err);
+      }
+    );
+
+    return seq;
+  }
+  
+  rejetersrtRenvoye(bon) {
+    let seq = this.api
+      .post("app/core/sortie.class.php?x=rejetersrtRenvoye", 
+      bon).share();
+
+    seq.subscribe(
+      (res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        console.log(res);
+      },
+      (err) => {
+        console.error("ERROR", err);
+      }
+    );
+
+    return seq;
+  }
+  apprvae(bon) {
+    let seq = this.api
+      .post("app/core/approvisionnement.class.php?x=apprvae", 
+      bon ).share();
+
+    seq.subscribe(
+      (res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        console.log(res);
+      },
+      (err) => {
+        console.error("ERROR", err);
+      }
+    );
+
+    return seq;
+  }
 
   searchBon(numerobon) {
     console.log(numerobon)

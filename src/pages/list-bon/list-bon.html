@@ -38,16 +38,16 @@
       </button>
 
             <ion-item-options *ngIf="bon.bon_vu==0">
-                <button ion-button color="danger" (click)="deleteItem(bon)">
+                <button ion-button color="danger" (click)="rejeter(bon)">
           {{ 'REJECT_BUTTON' | translate }}
         </button>
-                <button ion-button class="success" shape="round" (click)="deleteItem(bon)">
+                <button ion-button class="success" shape="round" (click)="accepter(bon)">
           {{ 'ACCEPT_BUTTON' | translate }}
         </button>
             </ion-item-options>
 
             <ion-item-options *ngIf="bon.rejeter==1">
-                <button ion-button class="warning" shape="round" (click)="deleteItem(bon)">
+                <button ion-button class="warning" shape="round" (click)="renvoyer(bon)">
           {{ 'RESEND_BUTTON' | translate }}
         </button>
             </ion-item-options>

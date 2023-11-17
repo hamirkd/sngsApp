@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'DEMANDES_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="100" pullMax="200" closeDuration="0.3">
+        <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar (ionInput)="searchDemande($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_DEMANDE' | translate }}"></ion-searchbar>
+    <ion-list>
+        <ion-item-sliding *ngFor="let demande of listdemandes">
+            <button ion-item (click)="openItem(demande)">
+        <ion-avatar item-start>
+          <img [src]="'assets/img-gbcys/logo.jpg'" />
+        </ion-avatar>
+        <h2><b>{{demande.id_dem}}</b></h2>
+        <p>{{demande.date_demande}}</p>
+        <p>{{demande.mag_demandeur}}</p>
+        <p>Demandeur : {{demande.login_demandeur}}</p>
+        <p>({{demande.login_caissier_fact}})</p>
+        <p style="color:red" *ngIf="demande.action==2">{{'REJETER_PAR' | translate }} {{demande.last_user}}</p>
+        <ion-note item-end *ngIf="demande.sup_fact==2" color="danger"
+          >{{ 'REJETER' | translate }}</ion-note
+        >
+      </button>
+            <ion-item-options *ngIf="demande.sup_fact!==2">
+                <button ion-button color="success" (click)="accepterItem(demande)">
+                  {{ 'ACCEPTER_BUTTON' | translate }}
+                </button>
+                <button ion-button color="danger" (click)="rejeterItem(demande)">
+                  {{ 'ANNULER_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="closed">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

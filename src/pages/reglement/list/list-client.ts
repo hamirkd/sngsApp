@@ -62,6 +62,7 @@ export class ListClientPage {
   }
   
   refresh(event) {
+    this.limit_debut=0;
     this.getAllClient();
     setTimeout(() => {
       if (event)
@@ -94,7 +95,7 @@ export class ListClientPage {
       return;
     }
 
-    this.clientProvider.getCreancesgClients({limit_debut:0,taille:20,nomclient:val}).subscribe(data=>{
+    this.clientProvider.getCreancesgClients({limit_debut:0,taille:100,nomclient:val}).subscribe(data=>{
       let client = JSON.parse(JSON.stringify(data)).datas;
       if(isArray(client)){this.listclients=client}
     })
@@ -106,7 +107,7 @@ export class ListClientPage {
   loadData(event) {
     setTimeout(() => {
 
-      this.clientProvider.getCreancesgClients({limit_debut:this.limit_debut,taille:this.taille}).subscribe(data=>{
+      this.clientProvider.getCreancesgClients({limit_debut:this.limit_debut+this.taille,taille:this.taille}).subscribe(data=>{
         if(data)
         {
           let clients = JSON.parse(JSON.stringify(data)).datas;

@@ -1,0 +1,36 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ demande.name }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="demande-detail" padding>
+
+        <h2>{{demande.date_demande}}</h2>
+        <p>{{demande.mag_demandeur}}
+        </p>
+        <p>Auteur : {{demande.login_demandeur}}</p>
+    </div>
+    <div class="demande-detail" padding *ngIf="demande.action==2" style="color:red">
+        <h5>Rejeter ({{demande.last_user}})</h5>
+        <p>Motif : {{demande.motif}}</p>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+        <ion-title *ngIf="demande.sup_fact!=2">
+            <button ion-button color="danger" (click)="annuler()">
+                {{ 'ANNULER_BUTTON' | translate }}
+            </button>
+            <button ion-button color="danger" (click)="accepter()">
+                {{ 'ACCEPTER_BUTTON' | translate }}
+            </button>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

@@ -1,7 +1,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>{{ 'ITEM_CREATE_TITLE' | translate }}</ion-title>
+        <ion-title>{{ 'MOTIF_TITLE' | translate }}</ion-title>
         <ion-buttons start>
             <button ion-button (click)="cancel()">
         <span color="primary" showWhen="ios">
@@ -11,7 +11,7 @@
       </button>
         </ion-buttons>
         <ion-buttons end>
-            <button ion-button (click)="done()" strong>
+            <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
         <span color="primary" showWhen="ios">
           {{ 'DONE_BUTTON' | translate }}
         </span>
@@ -24,19 +24,21 @@
 
 
 <ion-content>
+    <div class="demande-detail" padding>
+        <h2>{{demande.id_dem}}</h2>
+        <p>{{demande.date_demande}}</p>
+        <p>Auteur : {{demande.login_demandeur}}</p>
+        <p>Description : {{demande.details}}</p>
+    </div>
     <form>
         <ion-list>
-            <div class="bon-detail" padding>
-                <h2>{{bon.name}}</h2>
-                <p>{{bon.date_}}</p>
-                <p>{{bon.motif}}</p>
-            </div>
             <ion-item>
                 <ion-label position="stacked">{{ 'MOTIF_PLACEHOLDER' | translate }}</ion-label>
 
             </ion-item>
             <ion-item>
-                <ion-textarea rows="6" name="motif" [(ngModel)]="bon.motif"></ion-textarea>
+                <ion-textarea rows="6" name="motif" [(ngModel)]="motif"></ion-textarea>
+
             </ion-item>
         </ion-list>
     </form>
@@ -45,11 +47,8 @@
 <ion-footer>
     <ion-toolbar>
         <ion-title>
-            <button ion-button color="danger" (click)="cancel()" end>
-            {{ 'LEAVE_BUTTON' | translate }}
-          </button>
-            <button ion-button class="success" shape="round" (click)="done()" start>
-            {{ 'SAVE_BUTTON' | translate }}
+            <button ion-button color="danger" (click)="done()" end>
+            {{ 'CONFIRMER_BUTTON' | translate }}
           </button>
         </ion-title>
     </ion-toolbar>

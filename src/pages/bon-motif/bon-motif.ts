@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { Items } from '../../providers';
+import { BonProvider } from '../../providers/bon/bon';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ export class BonMotifPage {
   bon: any;
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, navParams: NavParams, bons: Items,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController, private bonService:BonProvider) {
     this.bon = navParams.get('bon') || bons.defaultItem;
   }
   
@@ -42,7 +43,19 @@ export class BonMotifPage {
       toast.present();
       return;
     }
-    this.bon.rejeter=1;
-    this.viewCtrl.dismiss(this.bon);
+    
+    this.bonService.rejetersrt(this.bon).subscribe(data=>{
+      console.log(data)
+      // this.bon.stocks = JSON.parse(JSON.stringify(data)).datas;
+      this.bon.rejeter=1;
+      let toast = this.toastCtrl.create({
+        message: data['message'],
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.viewCtrl.dismiss(this.bon);
+    });
+
   }
 }

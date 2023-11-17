@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, ToastController } from 'ionic-angular';
 import { isArray } from 'ionic-angular/util/util';
 import { Bon } from '../../models/bon';
 
@@ -13,7 +13,7 @@ import { BonProvider } from '../../providers/bon/bon';
 })
 export class ListBonPage {
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController,private bonService:BonProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public items: Items, public modalCtrl: ModalController,private bonService:BonProvider) {
     this.getBonList();
   }
   
@@ -91,6 +91,39 @@ export class ListBonPage {
         return 0
       })
     })
+    
+  }
+  
+  rejeter(bon) {
+    this.navCtrl.push('BonMotifPage', {
+      bon: bon
+    });
+    this.ionViewDidLoad();
+  }
+
+  accepter(bon) {
+    this.bonService.apprvae(bon).subscribe(data=>{
+      let toast = this.toastCtrl.create({
+        message: data['message'],
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.ionViewDidLoad();
+    });
+  }
+
+  renvoyer(bon) {
+    console.log(bon)
+    this.bonService.rejetersrtRenvoye(bon).subscribe(data=>{
+      let toast = this.toastCtrl.create({
+        message: data['message'],
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+      this.ionViewDidLoad();
+    });
     
   }
   

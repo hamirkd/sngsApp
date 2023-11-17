@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
-import { Tab1Root, Tab2Root, Tab3Root, Tab4Root } from '../';
+import { Tab0Root, Tab1Root, Tab2Root, Tab3Root, Tab4Root } from '../';
 
 @IonicPage()
 @Component({
@@ -10,6 +10,7 @@ import { Tab1Root, Tab2Root, Tab3Root, Tab4Root } from '../';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+  tab0Root: any = Tab0Root;
   tab1Root: any = Tab1Root;
   tab2Root: any = Tab2Root;
   tab3Root: any = Tab3Root;
