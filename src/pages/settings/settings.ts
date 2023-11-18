@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Settings, User } from '../../providers';
+import { Api, Settings, User } from '../../providers';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -20,12 +20,15 @@ export class SettingsPage {
 
   settingsReady = false;
   langue:any;
+  version: string;
 
   constructor(public navCtrl: NavController,
     public settings: Settings,
     public formBuilder: FormBuilder,public appCtrl: App,
     public navParams: NavParams,
-    public translate: TranslateService,private userService:User) {
+    public translate: TranslateService,private userService:User,
+    public api: Api) {
+      this.version = this.api.url;
   }
 
   ionViewDidLoad() {
