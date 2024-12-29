@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ 'PAIEMENTS_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullMin="100" pullMax="200" closeDuration="0.3">
+        <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="{{ 'Pull to refresh' | translate }}" refreshingSpinner="crescent" refreshingText="{{ 'Refreshing' | translate }}...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar (ionInput)="searchPaiement($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_PAIEMENT' | translate }}"></ion-searchbar>
+    <ion-card *ngFor="let paiement of listpaiements">
+
+        <ion-item>
+            <ion-avatar item-start>
+                <img [src]="'assets/lina/logo.jpg'">
+            </ion-avatar>
+            <p>{{paiement.date_paiement}}</p>
+        </ion-item>
+        <ion-card-content style="background:green; color: white;" *ngIf="paiement.used_paiement_code_user">
+            <p style="color: white;">Code : {{paiement.code}}</p>
+            <p style="color: white;">Type paiement : {{paiement.type_paiement}}</p>
+            <p style="color: white;">Montant : {{paiement.montant}}</p>
+            <p style="color: white;">Magasin : {{paiement.nom_mag}}</p>
+            <p style="color: white;" *ngIf="paiement.ref_facture_vente">Facture : {{paiement.ref_facture_vente}}</p>
+            <p style="color: white;" *ngIf="paiement.used_paiement_code_user">Caissier(ère) : {{paiement.used_paiement_code_user}}</p>
+        </ion-card-content>
+        <ion-card-content *ngIf="!paiement.used_paiement_code_user">
+            <p>Code : {{paiement.code}}</p>
+            <p>Type paiement : {{paiement.type_paiement}}</p>
+            <p>Montant : {{paiement.montant}}</p>
+            <p>Magasin : {{paiement.nom_mag}}</p>
+        </ion-card-content>
+    </ion-card>
+    <div class="paiement-detail" padding style="color:red">
+        <h5>Non utilisé : {{sommeParCategorie(listpaiements, 'NONUTILISE').nombre}}</h5>
+        <p>Montant : {{sommeParCategorie(listpaiements, 'NONUTILISE').somme}}</p>
+    </div>
+    <div padding>
+        <button (click)="recuperationCode()" ion-button color="primary" block class="login" *ngIf="!isSubmit">{{ 'ACTUALISATION_BUTTON' | translate }}</button>
+        <button ion-button color="primary" block class="login" disabled><ion-spinner></ion-spinner></button>
+    </div>
+    <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="closed">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+</ion-content>

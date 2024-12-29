@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
-import { Tab0Root, Tab1Root, Tab2Root, Tab3Root, Tab4Root } from '../';
+import { Tab0Root, Tab1Root, Tab2Root, Tab3Root, Tab4Root, Tab5Root } from '../';
 import {  User as UserService } from '../../providers';
 
 @IonicPage()
@@ -16,8 +16,10 @@ export class TabsPage {
   tab2Root: any = Tab2Root;
   tab3Root: any = Tab3Root;
   tab4Root: any = Tab4Root;
+  tab5Root: any = Tab5Root;
   activeValidation = false;
   activeValidation0 = true;
+  activePaiement = false;
 
   // tab1Title = " ";
   // tab2Title = " ";
@@ -37,6 +39,13 @@ export class TabsPage {
     }
     else {
       // this.activeValidation0 = true;
+    }
+    
+    if(this.userService._user.droit_paiement){
+      this.activePaiement = true;
+      // this.activeValidation0 = true;
+    } else {
+      this.activePaiement = false;
     }
   }
 }

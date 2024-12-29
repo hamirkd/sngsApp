@@ -1,0 +1,42 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ paiement.name }}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="paiement-detail" padding>
+
+        <h2>{{paiement.date_paiement | date}}</h2>
+        <p>Magasin : ({{paiement.mag_paiementur}}) {{paiement.magasin}}</p>
+
+        <p>Auteur : {{paiement.login_paiementur}}</p>
+    </div>
+    <div class="paiement-detail" padding>
+        <p>Type paiement : {{paiement.type_paiement}}</p>
+        <p>Montant : {{paiement.montant}}</p>
+        <h5>Description</h5>
+        <p>{{paiement.details}}</p>
+    </div>
+    <div class="paiement-detail" padding *ngIf="paiement.action==2" style="color:red">
+        <h5>Rejeter ({{paiement.last_user}})</h5>
+        <p>Motif : {{paiement.motif}}</p>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+
+        <ion-title *ngIf="paiement.sup_fact!=2">
+            <button ion-button color="danger" (click)="annuler()">
+                {{ 'ANNULER_BUTTON' | translate }}
+            </button>
+            <button ion-button color="success" (click)="accepter()">
+                {{ 'ACCEPT_BUTTON' | translate }}
+            </button>
+        </ion-title>
+    </ion-toolbar>
+</ion-footer>

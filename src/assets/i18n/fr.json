@@ -10,6 +10,7 @@
     "TAB2_TITLE": "Clients",
     "TAB3_TITLE": "Paramètres",
     "TAB4_TITLE": "Factures",
+    "TAB5_TITLE": "Paiement",
 
     "MAP_TITLE": "Carte",
 
@@ -54,6 +55,9 @@
     "BONS_TITLE": "Liste des bons",
     "FACTURES_TITLE": "Liste des factures",
     "DEMANDES_TITLE": "Liste des demandes",
+    "PAIEMENTS_TITLE": "Liste des paiements",
+    "SEARCH_PLACEHOLDER_PAIEMENT": "Saisissez le code du paiement",
+    "ACTUALISATION_BUTTON": "Actualiser",
     "ACCEPT_BUTTON": "Accepter",
     "REJECT_BUTTON": "Rejeter",
     "ANNULER_BUTTON": "Annuler",

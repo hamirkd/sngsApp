@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import { Api } from "..";
-import { Demande } from "../../models/demande";
+import { Paiement } from "../../models/paiement";
 
 /*
   Generated class for the BonProvider provider.
@@ -10,12 +10,12 @@ import { Demande } from "../../models/demande";
   and Angular DI.
 */
 @Injectable()
-export class DemandeProvider {
+export class PaiementProvider {
   constructor(public api: Api, public storage: Storage) {}
-  demandes:Demande[]=[];
-  getDemandeByFilter(demande) {
+  paiements:Paiement[]=[];
+  getPaiementByFilter(paiement) {
     let seq = this.api
-      .post("app/core/demande.class.php?x=getEtatDemandes", demande)
+      .post("app/core/paiement.class.php?x=getEtatPaiements", paiement)
       .share();
     seq.subscribe(
       (res: any) => {
@@ -30,10 +30,10 @@ export class DemandeProvider {
     return seq;
   }
 
-  getDemandesByRole(role){
+  getPaiements(){
     
     let seq = this.api
-    .post("app/core/demande.class.php?x=getDemandesByRole",{role: role})
+    .get("app/core/paiement.class.php?x=getPaiements")
     .share();
 
     seq.subscribe(
@@ -50,14 +50,14 @@ export class DemandeProvider {
   }
 /**
  * 
- * @param demande 
+ * @param paiement 
  * Role : 'RESP'|'RESPACHAT'
  * @returns 
  */
-  demandeRejeterOrAccepter(demande:{motif,id_dem, action, role}){
+  paiementRejeterOrAccepter(paiement:{motif,id_dem, action, role}){
     
     let seq = this.api
-    .post("app/core/demande.class.php?x=actionSurDemande", demande)
+    .post("app/core/paiement.class.php?x=actionSurPaiement", paiement)
     .share();
 
     seq.subscribe(
@@ -75,9 +75,9 @@ export class DemandeProvider {
 
   
 
-  searchDemande(demandefilter) {
+  searchPaiement(paiementfilter) {
     let seq = this.api
-      .post("app/core/apimobile/demande.class.php?x=searchDemande", demandefilter)
+      .post("app/core/paiement.class.php?x=searchPaiement", paiementfilter)
       .share();
 
     seq.subscribe(
@@ -101,10 +101,10 @@ export class DemandeProvider {
 
   query(params?: any) {
     if (!params) {
-      return this.demandes;
+      return this.paiements;
     }
  
-    return this.demandes.filter((item) => {
+    return this.paiements.filter((item) => {
       for (let key in params) {
         let field = item[key];
         if (

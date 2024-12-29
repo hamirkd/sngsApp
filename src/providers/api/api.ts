@@ -9,8 +9,9 @@ export class Api {
   // url: string = 'http://localhost:3001/sngs4';
   // url: string = 'http://sngs2.ddns.net/sngs2';
   // url: string = 'http://sngs4.ddns.net/sngs4';
-   url: string = 'http://linaentreprise.ddns.net/lina';
+  //  url: string = 'http://linaentreprise.ddns.net/lina';
   // url: string = 'http://linaentreprise.ddns.net/linatest';
+  url: string = 'http://linaentreprise.ddns.net/linanew202412';
   
 
   constructor(public http: HttpClient) {

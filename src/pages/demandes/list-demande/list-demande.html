@@ -10,34 +10,46 @@
         </ion-refresher-content>
     </ion-refresher>
     <ion-searchbar (ionInput)="searchDemande($event)" placeholder="{{ 'SEARCH_PLACEHOLDER_DEMANDE' | translate }}"></ion-searchbar>
-    <ion-list>
-        <ion-item-sliding *ngFor="let demande of listdemandes">
-            <button ion-item (click)="openItem(demande)">
-        <ion-avatar item-start>
-          <img [src]="'assets/img-gbcys/logo.jpg'" />
-        </ion-avatar>
-        <h2><b>{{demande.id_dem}}</b></h2>
-        <p>Date {{demande.date_demande | date}}</p>
-        <p>Magasin : ({{demande.mag_demandeur}}) {{demande.magasin}}</p>
-        <p>Demandeur : {{demande.login_demandeur}}</p>
-        <p *ngIf="demande.last_user">Dernier Validateur : {{demande.last_user}}</p>
-        <p>Type demande : {{demande.type_demande}}</p>
-        <p>Description : {{demande.details}}</p>
+    <ion-card *ngFor="let demande of listdemandes">
+
+        <ion-item>
+            <ion-avatar item-start>
+                <img [src]="'assets/lina/logo.jpg'">
+            </ion-avatar>
+            <h2>{{demande.id_dem}}</h2>
+            <p>{{demande.date_demande}}</p>
+            <ion-note *ngIf="demande?.updatedAt"> Dernière mise à jour {{demande?.updatedAt}}
+            </ion-note>
+        </ion-item>
+        <ion-card-content>
+            <p>Magasin : ({{demande.mag_demandeur}}) {{demande.magasin}}</p>
+            <p>Demandeur : {{demande.login_demandeur}}</p>
+            <p *ngIf="demande.last_user">Dernier Validateur : {{demande.last_user}}</p>
+            <p>Type demande : {{demande.type_demande}}</p>
+            <p>Montant : {{demande.montant}}</p>
+            <p>{{demande.details}}</p>
+        </ion-card-content>
         <p style="color:red" *ngIf="demande.action==2">{{'REJETER_PAR' | translate }} {{demande.last_user}}</p>
-        <ion-note item-end *ngIf="demande.sup_fact==2" color="danger"
-          >{{ 'REJETER' | translate }}</ion-note
-        >
-      </button>
-            <ion-item-options *ngIf="demande.sup_fact!==2">
-                <button ion-button color="success" (click)="accepterItem(demande)">
-                  {{ 'ACCEPT_BUTTON' | translate }}
-                </button>
-                <button ion-button color="danger" (click)="rejeterItem(demande)">
-                  {{ 'ANNULER_BUTTON' | translate }}
-                </button>
-            </ion-item-options>
-        </ion-item-sliding>
-    </ion-list>
+        <ion-note item-end *ngIf="demande.sup_fact==2" color="danger">
+            {{ 'REJETER' | translate }}</ion-note>
+
+
+        <ion-row>
+            <ion-col>
+                <button ion-button color="primary" clear small icon-start (click)="accepterItem(demande)">
+            <ion-icon name='thumbs-up'></ion-icon>
+            {{ 'ACCEPT_BUTTON' | translate }}
+          </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button color="danger" clear small icon-start (click)="rejeterItem(demande)">
+            <ion-icon name='thumbs-down'></ion-icon>
+            {{ 'ANNULER_BUTTON' | translate }}
+          </button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
     <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="closed">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
         </ion-infinite-scroll-content>

@@ -1,8 +1,12 @@
-<ion-tabs>
+<ion-tabs *ngIf="!activePaiement">
     <ion-tab [root]="tab0Root" [tabTitle]="'TAB0_TITLE' | translate" tabIcon="folder" *ngIf="activeValidation"></ion-tab>
     <ion-tab [root]="tab1Root" [tabTitle]="'TAB1_TITLE' | translate" tabIcon="folder" *ngIf="activeValidation0"></ion-tab>
     <ion-tab [root]="tab4Root" [tabTitle]="'TAB4_TITLE' | translate" tabIcon="folder" *ngIf="activeValidation0"></ion-tab>
     <ion-tab [root]="tab2Root" [tabTitle]="'TAB2_TITLE' | translate" tabIcon="people" *ngIf="activeValidation0"></ion-tab>
     <ion-tab [root]="tab3Root" [tabTitle]="'TAB3_TITLE' | translate" tabIcon="cog" *ngIf="activeValidation0"></ion-tab>
     <ion-tab [root]="tab3Root" [tabTitle]="'TAB3_TITLE' | translate" tabIcon="cog" *ngIf="!activeValidation0"></ion-tab>
+</ion-tabs>
+<ion-tabs *ngIf="activePaiement">
+    <ion-tab [root]="tab5Root" [tabTitle]="'TAB5_TITLE' | translate" tabIcon="folder"></ion-tab>
+    <ion-tab [root]="tab3Root" [tabTitle]="'TAB3_TITLE' | translate" tabIcon="cog"></ion-tab>
 </ion-tabs>

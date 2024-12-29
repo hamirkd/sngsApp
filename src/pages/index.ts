@@ -11,4 +11,5 @@ export const Tab0Root = 'ListDemandePage';
 export const Tab1Root = 'ListBonPage';
 export const Tab4Root = 'ListFacturePage';
 export const Tab2Root = 'ListClientPage';
+export const Tab5Root = 'ListPaiementPage';
 export const Tab3Root = 'SettingsPage';
