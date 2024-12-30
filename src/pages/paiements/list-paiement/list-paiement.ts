@@ -6,6 +6,7 @@ import { Items } from '../../../providers';
 import {  User as UserService } from '../../../providers';
 import { PaiementProvider } from '../../../providers/paiements/paiement.provider';
 import { Paiement } from '../../../models/paiement';
+import { SMS } from '@ionic-native/sms/ngx';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ import { Paiement } from '../../../models/paiement';
 export class ListPaiementPage {
 
   constructor(public navCtrl: NavController,private userService: UserService, public items: Items,
-    public toastCtrl: ToastController,
+    public toastCtrl: ToastController,private sms: SMS,
     public modalCtrl: ModalController,private paiementProvider:PaiementProvider) {
     this.getAllPaiements();
   }
@@ -77,7 +78,12 @@ export class ListPaiementPage {
   }
   recuperationCode(){
     this.isSubmit = true;
-    
+    this.sms.getAllSMS().then((messages) => {
+      console.log('Messages:', messages);
+    }).catch((error) => {
+      console.error('Erreur de récupération des messages:', error);
+    });
+
   }
 
   /**
