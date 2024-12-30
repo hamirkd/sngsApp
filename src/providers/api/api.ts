@@ -11,7 +11,8 @@ export class Api {
   // url: string = 'http://sngs4.ddns.net/sngs4';
   //  url: string = 'http://linaentreprise.ddns.net/lina';
   // url: string = 'http://linaentreprise.ddns.net/linatest';
-  url: string = 'http://linaentreprise.ddns.net/linanew202412';
+  // url: string = 'http://linaentreprise.ddns.net/linanew202412';
+  url: string = 'http://localhost/sngs4';
   
 
   constructor(public http: HttpClient) {

@@ -98,3 +98,6 @@ To change the language of the app, edit `src/app/app.component.ts` and modify
 ionic cordova build android
 
 ionic cordova resources android
+
+npm install -g @ionic/cli@6.17.0
+

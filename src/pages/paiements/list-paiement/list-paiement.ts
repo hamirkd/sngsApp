@@ -78,11 +78,14 @@ export class ListPaiementPage {
   }
   recuperationCode(){
     this.isSubmit = true;
-    this.sms.getAllSMS().then((messages) => {
+    setTimeout(() => {
+      this.isSubmit = false;
+    }, 1000);
+    /*this.sms.getAllSMS().then((messages) => {
       console.log('Messages:', messages);
     }).catch((error) => {
       console.error('Erreur de récupération des messages:', error);
-    });
+    });*/
 
   }
 

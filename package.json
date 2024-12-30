@@ -50,6 +50,7 @@
         "zone.js": "0.8.29"
     },
     "devDependencies": {
+        "@capacitor/cli": "6.2.0",
         "@ionic/app-scripts": "3.2.4",
         "cordova-ios": "^6.2.0",
         "cordova-plugin-android-permissions": "^1.1.2",

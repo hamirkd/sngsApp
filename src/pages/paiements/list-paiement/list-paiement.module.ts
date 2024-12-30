@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PaiementProvider } from '../../../providers/paiements/paiement.provider';
 import { ListPaiementPage } from './list-paiement';
+import { SMS } from '@ionic-native/sms/ngx';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ListPaiementPage } from './list-paiement';
   ],
   providers: [
     
-    PaiementProvider
+    PaiementProvider, SMS
   ]
 })
 export class ListPageModule { }
